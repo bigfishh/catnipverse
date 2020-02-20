@@ -1,0 +1,33 @@
+
+                        <div class="content">
+                        <!-- Content -->
+                            <!-- Error -->
+                           
+                            <!-- End of Error -->
+                            <!-- Content -->
+                            <%= form_tag @sessions do %>
+                              <div class="field">
+                                <p class="control has-icons-left">
+                                  <label class="label">Username</label>
+                                  <input class="input" type= "text" 
+                                    <%= text_field_tag :username %>
+                                </p>
+                              </div>
+                              <div class="field">
+                                <p class="control has-icons-left">
+                                  <label class="label">Password</label>
+                                  <input class="input" type= "password" 
+                                    <%= password_field_tag :password %> 
+                                </p>
+                              </div>
+                              <div class="field actions">
+                                <p class="control">
+                                  <button class="button">
+                                    <% submit_tag%> Login 
+                                  </button>
+                                </p>
+                                 <p>If you don't have an account <br/> <%= link_to "Create one!", signup_path %></p>
+                              </div>
+                            <% end %>
+                            <!-- End of Content -->
+                       

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Catnipverse</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+</style>
+</head>
+<body>
+    <section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-info has-text-centered">
+                    <p class="title"> Welcome to CATNIPVERSE</p>
+                    <p class="subtitle">See what’s happening in the world right now</p>
+    <%= yield %>
+                </article>
+            </div>
+        </div>
+    </div>
+  </div>
+</section>
+  </body>
+</html>
+

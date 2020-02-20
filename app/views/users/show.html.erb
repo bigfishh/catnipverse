@@ -1,0 +1,64 @@
+<% if @current_user %>
+    <%= link_to "Edit my profile", edit_user_path(@current_user.id)%>
+<% end %>
+<% if @user.followings.include?(@current_user) %>
+            <%=button_to "Unfollow", follow_path(@user.id), method: :post  %>
+        <% else %>
+            <%= button_to "Follow", user_follows_path(@user.id)%> <br/>
+        <% end %>
+<h1><%= @user.username %>'s Page</h1>
+<p>
+    <img src= <%= @user.img_url %> alt="Italian Trulli"><br/>
+    Name: <%= @user.name %><br/>
+    Bio: <%= @user.bio %>
+</p>
+
+
+<div class="columns">
+  <div class="column">
+  <br/>
+    <div class="columns is-mobile">
+      <div class="column">
+        <% if @user.followers.count > 0 %>
+        <p class="bd-notification is-info">Following:</p>
+            <% @user.followers.each do |follower| %>
+                <li class="has-text-left is-3 ">
+                <%= link_to follower.username, user_path(follower.id) %></li>
+            <% end %>
+        <% end %>
+      </div>
+      <div class="column">
+        <% if @user.followings.count > 0 %>
+        <p class="bd-notification is-info">Followers:</p>
+            <% @user.followings.each do |following| %>
+                <li class="has-text-left"><%= link_to following.username, user_path(following.id) %></li>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<br/>
+
+<% if @user.posts.count > 0 %>
+    Posts: 
+    <% @user.posts.each do |post| %>
+        <li> 
+            Location: <%= link_to post.location.name, post_path(post.id) %>  <br/>
+            <%= post.content %>
+            <% if post.likes.count > 0 %> 
+                💕
+                <% post.liked_users.each do |user|%>
+                    <%= user.username %>
+                <% end %>
+            <% end %>
+            <p>Comments:</p>
+            <% post.comments.each do |comment| %>
+                <%= comment.user.username %><br/>
+                <%= comment.content %><br/>
+            <% end %>
+        </li>
+    <% end %>
+<% end %>

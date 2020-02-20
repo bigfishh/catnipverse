@@ -1,0 +1,124 @@
+<% if @current_user %>
+          Hi <%= link_to @current_user.name, user_path(@current_user.id) %>!
+          <%= link_to "Log Out", logout_path, method: :delete %>
+          <%= link_to "New Post", new_post_path %><br/>
+      <% else %>
+          <a class="button is-rounded is-normal" href=/login>Log in</a><br/>
+          <br/>
+          <a class="button is-rounded is-normal" href=/signup>Sign up</a><br/>
+<% end %>
+
+<div class="box">
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-128x128">
+        <img src= <%= @post.user.img_url %> alt="Italian Trulli">
+    </p>
+  </figure>
+  <div class="media-content has-background-white-bis">
+    <div class="content has-text-grey-darker">
+      <p>
+        <strong><%= @post.user.name %></strong> <small>@<%= @post.user.username %></small> 
+        <br>
+        <small><%= @post.location.name %>, <%= @post.location.city %><br/></small>
+        <br>
+            <%= @post.content %>
+        <br>
+        <br>
+        <small>
+    <% if @post.liked_users.include?(@current_user)%>
+        <%= link_to "unlike", like_path(@post.id), method: :delete %>
+    <% elsif @post.user == @current_user %>
+    <% else %>
+        <%= link_to "like", post_likes_path(@post.id), method: :post%>
+    <% end %>
+    </small> 
+        <small><%= @post.created_at.strftime("%m-%d-%Y")%></small><br>
+        <% if @post.likes.count > 0 %> 
+        💕by 
+        <% @post.liked_users.each do |user|%>
+            <%= user.username %>
+        <% end %>
+    <% end %>
+    
+      </p>
+    </div>
+  </div>
+  <div class="media-right">
+              <div class="level-right">
+                    <p class="level-item">
+                     <% if @current_user == @post.user%>
+                      <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link is-arrowless">
+                          🐾
+                        </a>
+                        <div class="navbar-dropdown">
+                          <a class="navbar-item">
+                            <%= link_to "Edit", edit_post_path(@post.id)%>
+                          </a>
+                          <a class="navbar-item">
+                            <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }%>
+                          </a
+                        </div>
+                      </div>
+                      <% end %>
+                    </p>
+                  </div>
+            </div>
+</article>
+</div>
+
+<% if  @post.comments.count > 0 %>
+<div class="box">
+<article class="media">
+<% @post.comments.each do |comment| %>
+      <figure class="media-left">
+        <p class="image is-48x48">
+          <img src= <%= comment.user.img_url %> alt="Italian Trulli">
+        </p>
+      </figure>
+    <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><%= comment.user.username %></strong>
+            <br>
+                <%= comment.content %>
+            <br>
+            <small>
+                <a>
+                    <% if @current_user == comment.user%>
+                        <%= link_to "delete", comment_path(comment.id), method: :delete%>
+                    <% end %>
+                </a> <%= comment.created_at.strftime("%m-%d-%Y")%></small>
+          </p>
+        </div>
+    </div>
+    <% end %>
+</div>
+<% end %>
+    
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src= <%= @current_user.img_url %> alt="Italian Trulli">
+    </p>
+  </figure>
+  <div class="media-content">
+  <%= form_for @comment, url: '/newcomment', method: :post do |f| %>
+    <div class="field">
+        <%= f.hidden_field :post_id, value: @post.id %>
+      <p class="control">
+        <textarea class="textarea" <%= f.text_area :content %>
+      </p>
+    </div>
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <a class="button"><%= f.submit "Submit" %></a>
+        </div>
+      </div>
+    </nav>
+    <% end %>
+  </div>
+</article>
+</article>
