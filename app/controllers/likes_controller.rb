@@ -11,7 +11,7 @@ class LikesController < ApplicationController
     def destroy
         @unliking_post = Post.find(params[:id])
         @like_ship = Like.find_by(user_id: @current_user.id, post_id: @unliking_post.id)
-        byebug
+        # byebug
         @like_ship.delete
         redirect_to post_path(@unliking_post.id)
     end
