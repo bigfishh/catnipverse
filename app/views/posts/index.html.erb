@@ -1,39 +1,48 @@
-<section class="section">
-  <div class="content">
-  <!-- Content -->
-      <% if @current_user %>
-          Hi <%= link_to @current_user.name, user_path(@current_user.id) %>!
-          <%= link_to "Log Out", logout_path, method: :delete %>
-          <%= link_to "New Post", new_post_path %>
-      <% else %>
-          <a class="button is-rounded is-normal" href=/login>Log in</a><br/>
-          <br/>
-          <a class="button is-rounded is-normal" href=/signup>Sign up</a><br/>
-      <% end %>
-  </div>
-  <div class="content">
-  <div class="box">
-  <h1 class="title has-text-info" >FEED</h1>
-  </div>
+<div class="columns">
+  <div class="column">
+    <!-- Start -->
+    <div class="box">
+        <% if @current_user %>
+            Hi <%= link_to @current_user.name, user_path(@current_user.id) %>!
+            <br/>
+            <%= link_to "Log Out", logout_path, method: :delete %>
+            <br/>
+            <%= link_to "New Post", new_post_path %>
+        <% else %>
+            <a class="button is-rounded is-normal" href=/login > Log in </a> <br/>
+            <br/>
+            <a class="button is-rounded is-normal" href=/signup > Sign up </a> <br/>
+        <% end %>
+    </div>
+    <div class="box">
+      <%= render :partial => 'form' %>
+    </div>
+    <!-- End -->
   </div>
 
-  <div class="box">
-  <div class="container">
+  <div class="column is-four-fifths">
+    <!-- Start -->
+    <div class="box">
     <% @posts.each do |post|%>
       <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src= <%= post.user.img_url %> alt="Italian Trulli">
-          </p>
+        <figure class="image media-left is-64x64">
+            <img class="is-rounded" src= <%= post.user.img_url %> alt="<%= post.user.name %>">
         </figure>
         <div class="media-content">
+          <%= link_to post_path(post.id) do %>
           <div class="content">
-            <p>
-              <strong><%= link_to post.user.name, post_path(post.id) %></strong> <small>@<%= post.user.username %></small> <small><%= post.created_at.strftime("%m-%d-%Y")%></small>
+              <strong>
+                <%= post.user.name %>
+              </strong> 
+              <small>
+                @<%= post.user.username %>
+                <br/>
+                <%= post.created_at.strftime("%m-%d-%Y")%>
+              </small> 
               <br>
               <%= post.content %>
-            </p>
           </div>
+        <% end %>
         </div>
         <div class="media-right">
               <div class="level-right">
@@ -55,8 +64,10 @@
                       <% end %>
                     </p>
                   </div>
-            </div>
       </article>
     <%end%>
+    </div>
+    <!-- End -->
   </div>
-</section>
+</div>
+    
