@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(user: current_user, location_id: params[:post][:location_id], content: params[:post][:content])
-    byebug
+    # byebug
     if @post.valid?
       redirect_to posts_path
     else
