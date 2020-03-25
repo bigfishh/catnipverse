@@ -1,25 +1,16 @@
-# README
+<h1 align="center">CatThoughts 🍕🥐 </h1>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<div align="center">
+  A <code>Rails</code> microblogging web application designed as Twitter for cats
+</div>
 
-Things you may want to cover:
+<br />
 
-* Ruby version
+## Tech Stack
+This web app makes use of the following:
+- Ruby [2.6.1]
+- Rails [~> 5.2.3] - MVC web framework
+- PostgreSQL [>= 0.18, < 2.0] - Database
+- Bulma 
+- Bcrypt [~> 3.1.7] - Gem for encryption
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# catnipverse
