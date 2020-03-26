@@ -1,6 +1,11 @@
-<h1>Edit Post</h1>
-<hr>
-<%= form_for @post do |f| %>
+<br/>
+<br/>
+<br/>
+<div class="columns">
+    <div class="column"></div>
+    <div class="column">
+        <div class="box">
+            <%= form_for @post do |f| %>
     <div class="field">
       <label class="label">Location</label>
       <div class="control">
@@ -17,6 +22,10 @@
       </div>
     </div>
     <button class="button is-info is-rounded is-small">
-      <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Meow</span>
+      <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Update Meow!</span>
     </button>
 <% end %>
+        </div>
+    </div>
+    <div class="column"></div>
+</div>

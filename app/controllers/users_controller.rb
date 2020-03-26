@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user.update(name: params[:user][:name], username: params[:user][:username], password: current_user.password_digest, bio: params[:user][:bio])
+    @user.update(name: params[:user][:name], username: params[:user][:username], password: params[:user][:password], bio: params[:user][:bio])
     # @user.update(user_params)
     # byebug
     redirect_to user_path(@user.id)

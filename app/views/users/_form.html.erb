@@ -1,23 +1,39 @@
-<%= form_for @user do |f| %>
-    <div class="field">
-        <label class="label">Name</label>
-        <div class="control">
-            <input class="input" type="text" name="user[name]" id="user_name" placeholder=<%= f.text_field :name %>
+
+
+<div class="columns">
+    <div class="column"></div>
+    <div class="column">
+        <div class="box">
+            <%= form_for @user do |f| %>
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input class="input" type="text" name="user[name]" id="user_name" placeholder=<%= f.text_field :name %>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Username</label>
+                <div class="control">
+                    <input class="input" type="text" value="thepusheencat" name="user[username]" id="user_username" placeholder=<%= f.text_field :username %></input>  
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="user[password]" id="user_password" />         
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Bio</label>
+                <div class="control">
+                    <textarea class="textarea" name="user[bio]" id="user_bio" placeholder=<%= f.text_area :bio %></textarea>
+                </div>
+            </div>
+            <button class="button is-info is-rounded is-small">
+                <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Update Profile!</span>
+            </button>
+            <% end %>
         </div>
     </div>
-    <div class="field">
-        <label class="label">Username</label>
-        <div class="control">
-            <input class="input" type="text" value="thepusheencat" name="user[username]" id="user_username" placeholder=<%= f.text_field :username %>/>      
-        </div>
-    </div>
-    <div class="field">
-        <label class="label">Bio</label>
-        <div class="control">
-            <textarea class="textarea" name="user[bio]" id="user_bio" placeholder=<%= f.text_area :bio %></textarea>
-        </div>
-        </div>
-        <button class="button is-info is-rounded is-small">
-            <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Update!</span>
-        </button>
-<% end %>
+    <div class="column"></div>
+</div>
