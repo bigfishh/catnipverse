@@ -1,125 +1,122 @@
 <div class="columns">
-  <div class="column">
-    <!-- START -->
-    <%= link_to "Feed", posts_path %>
-        <h1>@<%= @user.username %></h1>
-        <% if @current_user != @user %>
-                <% if @user.followings.include?(@current_user) %>
-                        <%=button_to "Unfollow", follow_path(@user.id), method: :post  %>
+    
+    <div class="column">
+        <div class="box">
+            <!-- START -->
+            <%= link_to "Feed", posts_path %>
+                <h1>@<%= @user.username %></h1>
+                
+                <figure class="image is-128x128">
+                    <img src=<%= @user.img_url %> alt=<%= @user.username %>>
+                </figure>
+                <p>
+                    Name: <%= @user.name %><br/>
+                    Bio: <%= @user.bio %>
+                </p>
+                <% if @current_user != @user %>
+                        <% if @user.followings.include?(@current_user) %>
+                            <%=button_to "Unfollow", follow_path(@user.id), method: :post  %>
+                        <% else %>
+                            <%= button_to "Follow", user_follows_path(@user.id)%> <br/>
+                        <% end %>
                     <% else %>
-                        <%= button_to "Follow", user_follows_path(@user.id)%> <br/>
-                <% end %>
-            <% else %>
-                <%= link_to "Edit my profile", edit_user_path(@current_user.id)%>    
-        <% end %>
-        <figure class="image is-128x128">
-            <img src=<%= @user.img_url %> alt=<%= @user.username %>>
-        </figure>
-        <p>
-            Name: <%= @user.name %><br/>
-            Bio: <%= @user.bio %>
-        </p>
+                        <%= link_to "Edit my profile", edit_user_path(@current_user.id)%>    
+                    <% end %>
 
 
-    <div class="columns">
-        <div class="column">
-            <div class="column">
-                <% if @user.followers.count > 0 %>
-                <p class="bd-notification is-info">Following:</p>
-                    <% @user.followers.each do |follower| %>
-                        <li class="has-text-left is-3 ">
-                        <%= link_to follower.username, user_path(follower.id) %></li>
-                    <% end %>
-                <% end %>
+            <div class="columns">
+                <div class="column">
+                    <div class="column">
+                        <% if @user.followers.count > 0 %>
+                        <p class="bd-notification is-info">Following:</p>
+                            <% @user.followers.each do |follower| %>
+                                <li class="has-text-left is-3 ">
+                                <%= link_to follower.username, user_path(follower.id) %></li>
+                            <% end %>
+                        <% end %>
+                    </div>
+                    <div class="column">
+                        <% if @user.followings.count > 0 %>
+                        <p class="bd-notification is-info">Followers:</p>
+                            <% @user.followings.each do |following| %>
+                                <li class="has-text-left"><%= link_to following.username, user_path(following.id) %></li>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
             </div>
-            <div class="column">
-                <% if @user.followings.count > 0 %>
-                <p class="bd-notification is-info">Followers:</p>
-                    <% @user.followings.each do |following| %>
-                        <li class="has-text-left"><%= link_to following.username, user_path(following.id) %></li>
-                    <% end %>
-                <% end %>
-            </div>
+            <!-- END -->
         </div>
     </div>
-    <!-- END -->
-  </div>
 
-  <div class="column is-8">
-    <!-- START -->
-    <article class="media">
-        <% if @user.posts.count > 0 %>
-            <% @user.posts.each do |post| %>
-                <figure class="media-left">
-                    <p class="image is-64x64">
-                    <img src=<%= post.user.img_url %> alt="<%= post.user.name %>">
-                    </p>
-                </figure>
-                <div class="media-content">
-                    <div class="content">
-                        <p>
-                            <strong><%= post.user.name %></strong>
-                            <br/>
-                            <small><%= post.location.name %>, <%= post.location.city %><br/></small>
-                            <br/>
-                            <%= post.content %>
-                            <br/>
-                            <br>
-                        </p>
-                   
-                    <% if post.likes.count > 0 %> 
-                        💕
-                        <% post.liked_users.each do |user|%>
-                            <%= user.username %>
-                        <% end %>
-                    <% end %>
-                </div>
-                <% post.comments.each do |comment| %>
-                    <article class="media">
-                    <figure class="media-left">
-                        <p class="image is-64x64">
-                            <img src=<%= comment.user.img_url %> alt="<%= comment.user.name %>">
-                        </p>
-                    </figure>
-                    <div class="media-content">
-                        <div class="content">
-                        <p>
-                            <strong>@<%= comment.user.username %></strong>
-                            <br>
-                            <%= comment.content %>
-                            <br>
-                            <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-                        </p>
+    <div class="column is-8">
+        <div class="box">
+            <!-- START -->
+            <% if @user.posts.count > 0 %>
+                <% @user.posts.each do |post| %>
+                <!-- START OF ARTICLE -->
+                <article class="media">
+
+                        <figure class="media-left image is-64x64">
+                            <img src=<%= post.user.img_url %> alt="<%= post.user.name %>">
+                        </figure>
+
+                        <div class="media-content">
+                            <div class="content">
+                                <strong><%= post.user.name %></strong> <small><%= post.created_at.strftime("%m-%d-%Y")%></small><br/>
+                                <small><%= post.location.name %>, <%= post.location.city %></small><br/>
+                                    <%= post.content %>
+                                <br/>
+                                <!-- START LIKED USERS -->
+                                <small>
+                                <% if post.likes.count > 0 %> 
+                                    💕by <% post.liked_users.each do |user|%>
+                                        <%= user.username %>
+                                    <% end %>
+                                <% end %>
+                                </small>
+                                <!-- END LIKED USERS -->
+                                <br/>
+                                <!-- START LIKE/UNLIKE OPTION -->
+                                <small>
+                                    <a>
+                                        <% if post.liked_users.include?(@current_user)%>
+                                            <%= link_to "Unlike", like_path(post.id), method: :delete %> 
+                                        <% elsif post.user == @current_user %>
+                                        <% else %>
+                                            <%= link_to "Like", post_likes_path(post.id), method: :post%> 
+                                        <% end %> 
+                                    </a> 
+                                </small>
+                                <!-- END LIKE/UNLIKE OPTION -->
+                            </div>
+                            <% post.comments.each do |comment| %>
+                            <article class="media">
+                                    <figure class="media-left">
+                                        <p class="image is-64x64">
+                                            <img src=<%= comment.user.img_url %> alt="<%= comment.user.name %>">
+                                        </p>
+                                    </figure>
+                                <div class="media-content">
+                                    <div class="content">
+                                        <p>
+                                            <strong>@<%= comment.user.username %></strong>
+                                            <br>
+                                            <%= comment.content %>
+                                            <br>
+                                            <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                            <% end %>
                         </div>
-                    </div>
-                    </article>
+                </article>
+                <!-- END OF ARTICLE -->
                 <% end %>
-
             <% end %>
-            
-                
-            </div>
-            </article>
-            <article class="media">
-            <figure class="media-left">
-                <p class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
-                </p>
-            </figure>
-            <div class="media-content">
-                <div class="field">
-                <p class="control">
-                    <textarea class="textarea" placeholder="Add a comment..."></textarea>
-                </p>
-                </div>
-                <div class="field">
-                <p class="control">
-                    <button class="button">Post comment</button>
-                </p>
-                </div>
-            </div>
-        <% end %>
-    </article>
-    <!-- END -->
-  </div>
+            <!-- END -->
+        </div>
+    </div>
+
 </div>
