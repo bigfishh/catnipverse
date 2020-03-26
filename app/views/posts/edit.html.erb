@@ -1,11 +1,22 @@
 <h1>Edit Post</h1>
 <hr>
 <%= form_for @post do |f| %>
-    <%= f.label :location %><br/>
-    <%= f.collection_select :location_id, Location.all, :id, :name %><br/>
+    <div class="field">
+      <label class="label">Location</label>
+      <div class="control">
+        <div class="select">
+            <%= f.collection_select :location_id, Location.all, :id, :name %><br/>
+        </div>
+      </div>
+    </div>
     <br/>
-    <%= f.label :content %><br/>
-    <%= f.text_area :content %><br/>
-
-    <%= f.submit "Submit!"%>
+    <div class="field">
+      <label class="label">Message</label>
+      <div class="control">
+        <textarea name="post[content]" id="post_content" class="textarea" placeholder=<%= f.text_area :content %></textarea>
+      </div>
+    </div>
+    <button class="button is-info is-rounded is-small">
+      <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Meow</span>
+    </button>
 <% end %>
