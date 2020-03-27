@@ -5,26 +5,33 @@
     <div class="column"></div>
     <div class="column">
         <div class="box">
-            <%= form_for @post do |f| %>
-    <div class="field">
-      <label class="label">Location</label>
-      <div class="control">
-        <div class="select">
-            <%= f.collection_select :location_id, Location.all, :id, :name %><br/>
-        </div>
-      </div>
-    </div>
-    <br/>
-    <div class="field">
-      <label class="label">Message</label>
-      <div class="control">
-        <textarea name="post[content]" id="post_content" class="textarea" placeholder=<%= f.text_area :content %></textarea>
-      </div>
-    </div>
-    <button class="button is-info is-rounded is-small">
-      <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Update Meow!</span>
-    </button>
-<% end %>
+          <span style='margin-left: 10%'>
+              <a class="is-size-7" href="/posts"> 🏠Home </a> | 
+              <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
+              <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
+              <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
+          </span>
+          <hr>
+          <%= form_for @post do |f| %>
+            <div class="field">
+              <label class="label">Location</label>
+              <div class="control">
+                <div class="select">
+                    <%= f.collection_select :location_id, Location.all, :id, :name %><br/>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <div class="field">
+              <label class="label">Message</label>
+              <div class="control">
+                <textarea name="post[content]" id="post_content" class="textarea" placeholder=<%= f.text_area :content %></textarea>
+              </div>
+            </div>
+            <button class="button is-info is-rounded is-small">
+              <span type="submit" name="commit" value="Create" data-disable-with="Create Post">Update Meow!</span>
+            </button>
+          <% end %>
         </div>
     </div>
     <div class="column"></div>
