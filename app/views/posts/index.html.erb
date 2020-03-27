@@ -9,9 +9,12 @@
             <br/>
             <%= link_to "New Post", new_post_path %>
         <% else %>
-            <a class="button is-rounded is-normal" href=/login > Log in </a> <br/>
-            <br/>
-            <a class="button is-rounded is-normal" href=/signup > Sign up </a> <br/>
+          <span style="margin-left: 20%">
+            🐱
+            <a class="is-normal" href=/login > Log in </a> or
+            <a class="is-normal" href=/signup > Sign up </a>
+            🐱
+          </span>
         <% end %>
     </div>
     <div class="box">
@@ -40,7 +43,9 @@
                 <%= post.created_at.strftime("%m-%d-%Y")%>
               </small> 
               <br>
+              <span style="margin-left: 2%">
               <%= post.content %>
+              </span>
           </div>
         <% end %>
         </div>

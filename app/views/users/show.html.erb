@@ -65,7 +65,9 @@
                             <div class="content">
                                 <strong><%= post.user.name %></strong> <small><%= post.created_at.strftime("%m-%d-%Y")%></small><br/>
                                 <small><%= post.location.name %>, <%= post.location.city %></small><br/>
+                                <span style="margin-left: 2%">
                                     <%= post.content %>
+                                </span>
                                 <br/>
                                 <!-- START LIKED USERS -->
                                 <small>
@@ -89,6 +91,11 @@
                                     </a> 
                                 </small>
                                 <!-- END LIKE/UNLIKE OPTION -->
+                                <% if post.user == @current_user %>
+                                    <small>
+                                        <a><%= link_to "Edit", edit_post_path(post.id)%></a> · <a><%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%></a> 
+                                    </small>
+                                <% end %>
                             </div>
                             <% post.comments.each do |comment| %>
                             <article class="media">
@@ -102,7 +109,9 @@
                                         <p>
                                             <strong>@<%= comment.user.username %></strong>
                                             <br>
-                                            <%= comment.content %>
+                                                <span style="margin-left: 2%">
+                                                    <%= comment.content %>
+                                                </span>
                                             <br>
                                             <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
                                         </p>
