@@ -1,8 +1,11 @@
 <% if @current_user %>
-          Hi <%= link_to @current_user.name, user_path(@current_user.id) %>!
-          <%= link_to "Log Out", logout_path, method: :delete %>
-          <%= link_to "New Post", new_post_path %><br/>
-          <%= link_to "Feed", posts_path %>
+      <span style='margin-left: 10%'>
+          <a class="is-size-7" href="/posts"> 🏠Home </a> | 
+          <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
+          <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
+          <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
+      </span>
+      <hr>
       <% else %>
           <a class="button is-rounded is-normal" href=/login>Log in</a><br/>
           <br/>

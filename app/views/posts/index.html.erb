@@ -3,11 +3,12 @@
     <!-- Start -->
     <div class="box">
         <% if @current_user %>
-            Hi <%= link_to @current_user.name, user_path(@current_user.id) %>!
-            <br/>
-            <%= link_to "Log Out", logout_path, method: :delete %>
-            <br/>
-            <%= link_to "New Post", new_post_path %>
+            <span style='margin-left: 10%'>
+                    <a class="is-size-7" href="/posts"> 🏠Home </a> | 
+                    <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
+                    <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
+                    <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
+            </span>
         <% else %>
           <span style="margin-left: 20%">
             🐱
@@ -44,7 +45,7 @@
               </small> 
               <br>
               <span style="margin-left: 2%">
-              <%= post.content %>
+                <%= post.content %>
               </span>
           </div>
         <% end %>

@@ -3,7 +3,13 @@
     <div class="column">
         <div class="box">
             <!-- START -->
-            <%= link_to "Feed", posts_path %>
+                <span style='margin-left: 10%'>
+                    <a class="is-size-7" href="/posts"> 🏠Home </a> | 
+                    <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
+                    <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
+                    <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
+                </span>
+                <hr>
                 <h1>@<%= @user.username %></h1>
                 
                 <figure class="image is-128x128">

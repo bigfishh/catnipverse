@@ -1,4 +1,10 @@
 <div class="box">
+  <span style='margin-left: 38%'>
+    <a class="is-size-7" href="/posts"> 🏠Home </a> | 
+    <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
+    <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
+    <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
+  </span>
   <%= form_for @post do |f| %>
       <div class="field">
         <label class="label">Location</label>

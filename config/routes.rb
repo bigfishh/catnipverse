@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   post '/newcomment', to: 'posts#comment'
 
-  root 'welcome#index'
+  root 'posts#index'
 
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'
