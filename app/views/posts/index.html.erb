@@ -79,24 +79,24 @@
         </div>
         <div class="media-right" style="margin-right: 2%;">
               <div class="level-right">
-                    <p class="level-item">
-                    <% if post.user == @current_user %>
-                      <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link is-arrowless">
-                          🐾
-                        </a>
-                        <div class="navbar-dropdown" style="max-width: 1%;">
-                          <div class="navbar-item" style="margin-left: 0%;">
-                            <%= link_to "📝", edit_post_path(post.id)%>
-                          </div>
-                          <div class="navbar-item" style="margin-left: 0%;">
-                            <%= link_to "❌", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%>
-                          </div>
+                <p class="level-item">
+                  <% if post.user == @current_user %>
+                    <div class="navbar-item has-dropdown is-hoverable">
+                      <a class="navbar-link is-arrowless">
+                        🐾
+                      </a>
+                      <div class="navbar-dropdown" style="max-width: 1%;">
+                        <div class="navbar-item" style="margin-left: 0%;">
+                          <%= link_to "📝", edit_post_path(post.id)%>
+                        </div>
+                        <div class="navbar-item" style="margin-left: 0%;">
+                          <%= link_to "❌", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%>
                         </div>
                       </div>
-                      <% end %>
-                    </p>
-                  </div>
+                    </div>
+                  <% end %>
+                </p>
+              </div>
       </article>
     <%end%>
     </div>
