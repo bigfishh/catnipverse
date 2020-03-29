@@ -5,13 +5,13 @@ class FollowsController < ApplicationController
 
     def create
         @following_user = User.find(params[:user_id])
-        byebug
+        # byebug
         Follow.create(follower_id: @following_user.id, following_id: @current_user.id)
         redirect_to user_path(@following_user.id)
     end
 
     def destroy
-        byebug
+        # byebug
         @unfollowing_user = User.find(params[:id])
         @followship = Follow.find_by(follower_id: @unfollowing_user.id, following_id: @current_user.id)
         @followship.destroy

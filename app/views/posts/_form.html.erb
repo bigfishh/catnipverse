@@ -1,7 +1,7 @@
 <%= form_for @post do |f| %>
-    <label class="label" style="margin-left:22%;">✨write something✨</label>
+    <label class="label has-text-info	" style="margin-left:22%;">✨write something✨</label>
     <div class="field">
-      <label class="label">location</label>
+      <label class="label has-text-info	">location</label>
       <div class="control">
         <div class="select">
             <%= f.collection_select :location_id, Location.all, :id, :name %><br/>
@@ -10,7 +10,7 @@
     </div>
     <br/>
     <div class="field">
-      <label class="label">start here...</label>
+      <label class="label has-text-info	">start here...</label>
       <div class="control">
         <textarea name="post[content]" id="post_content" class="textarea" placeholder="start here..."></textarea>
       </div>

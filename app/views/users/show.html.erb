@@ -10,26 +10,23 @@
                     <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
                 </span>
                 <hr>
+                <% if @current_user != @user %>
+                    <% if @user.followings.include?(@current_user) %>                   
+                        <%=button_to "unfollow ", follow_path(@user.id), method: :post%>
+                    <% else %>
+                        <%= button_to "follow ", user_follows_path(@user.id)%>
+                    <% end %>
+                <% end %> 
                 <h5 class="title is-5 has-text-link has-text-centered">
                     ✨<%= @user.username %>✨
-                </h5>                
+                </h5>               
                 <figure class="image is-5by4">
                     <img src=<%= @user.img_url %> alt=<%= @user.username %>>
                 </figure>
                 <h6 class="is-medium has-text-centered has-text-weight-bold"><%= @user.name %></h6> 
                 <h6 class="is-small has-text-centered is-italic has-text-weight-semibold"><%= @user.bio %></h6>
 
-                <% if @current_user != @user %>
-                    <% if @user.followings.include?(@current_user) %> 
-                        <small>                     
-                            😿<%=link_to "unfollow", follow_path(@user.id), method: :post  %> @<%= @user.username %> 
-                        </small>
-                    <% else %>
-                        <small>
-                            😺<%= link_to "follow", user_follows_path(@user.id)%> @<%= @user.username %> 
-                        </small>
-                    <% end %>
-                <% else %>
+                <% if @current_user == @user %>
                     <p class="is-size-7 has-text-right"><%= link_to "✐ edit my profile ✐", edit_user_path(@current_user.id)%></p>
                 <% end %>
                 <hr>
@@ -121,7 +118,7 @@
                                         <% else %>
                                             0 comments
                                         <% end %>  ·
-                                        <%= link_to "View", post_path(post.id)%> 
+                                        <%= link_to "View Post", post_path(post.id)%> 
                                         <% if post.user == @current_user%>
                                             · <%= link_to "Edit", edit_post_path(post.id)%> 
                                             · <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%>

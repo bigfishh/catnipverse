@@ -27,7 +27,7 @@
   <div class="column is-8">
     <!-- Start -->
     <div class="box" style="margin-top: 2%; max-height: 96vh; overflow: scroll;">
-    <h4 class="title is-4 is-spaced" style="margin-left:35%;">thoughts shared 💭</h4>
+    <h4 class="title is-4 is-spaced has-text-info		" style="margin-left:35%;">thoughts shared 💭</h4>
     <% @posts.each do |post|%>
       <article class="media">
         <figure class="image media-left is-64x64">
@@ -36,7 +36,7 @@
         <div class="media-content">
           <div class="content">
               <strong>
-                <%= post.user.name %>
+                <%= link_to post.user.name, user_path(post.user.id) %>
               </strong> 
               <small>
                 @<%= post.user.username %>
@@ -75,7 +75,7 @@
               0 comments
             <% end %>
           </small> ·
-        <small class="is-size-7"><%= link_to "View", post_path(post.id)%></small>
+        <small class="is-size-7"><%= link_to "View Post", post_path(post.id)%></small>
         </div>
         <div class="media-right" style="margin-right: 2%;">
               <div class="level-right">
