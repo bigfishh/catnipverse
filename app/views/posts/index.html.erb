@@ -31,7 +31,7 @@
     <% @posts.each do |post|%>
       <article class="media">
         <figure class="image media-left is-64x64">
-            <img class="is-rounded" src= <%= post.user.img_url %> alt="<%= post.user.name %>">
+            <img src= <%= post.user.img_url %> alt="<%= post.user.name %>">
         </figure>
         <div class="media-content">
           <div class="content">
@@ -41,19 +41,18 @@
               <small>
                 @<%= post.user.username %>
                 <br/>
-                <%= post.created_at.strftime("%m-%d-%Y")%>
+                <span class="is-italic is-size-7"><%= post.created_at.strftime("%m-%d-%Y")%></span>
               </small> 
               <br>
-              <span style="margin-left: 2%">
+              <div style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
                 <%= post.content %>
-              </span>
+              </div>
           </div>
           <span class="is-size-7">
                 <% if post.likes.count > 0 %> 
                   💕by 
-                  <% post.liked_users.each do |user|%>
-                      <%= user.username %>
-                  <% end %>
+                  <%- liked_users= post.liked_users.map {|user| user.username}.join(', ') %>
+                  <%= liked_users %>
                 <% end %>
           </span><br/>
           <% if post.user.id != @current_user%>
@@ -68,7 +67,9 @@
           <% end %>
 
           <small class="is-size-7">
-            <% if  post.comments.count > 0 %>
+            <% if  post.comments.count == 1 %>
+              <%= post.comments.size %> comment
+            <% elsif post.comments.count > 1 %>
               <%= post.comments.size %> comments
             <% else %>
               0 comments
