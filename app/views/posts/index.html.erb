@@ -44,17 +44,17 @@
                 <span class="is-italic is-size-7"><%= post.created_at.strftime("%m-%d-%Y")%></span>
               </small> 
               <br>
-              <div style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
+              <div class="has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
                 <%= post.content %>
               </div>
           </div>
-          <span class="is-size-7">
+          <small class="is-small">
                 <% if post.likes.count > 0 %> 
                   💕by 
                   <%- liked_users= post.liked_users.map {|user| user.username}.join(', ') %>
                   <%= liked_users %>
                 <% end %>
-          </span><br/>
+          </small><br/>
           <% if post.user.id != @current_user%>
               <small class="is-size-7">
                 <% if post.liked_users.include?(@current_user)%>
@@ -77,7 +77,7 @@
           </small> ·
         <small class="is-size-7"><%= link_to "View", post_path(post.id)%></small>
         </div>
-        <div class="media-right">
+        <div class="media-right" style="margin-right: 2%;">
               <div class="level-right">
                     <p class="level-item">
                     <% if post.user == @current_user %>
@@ -85,13 +85,13 @@
                         <a class="navbar-link is-arrowless">
                           🐾
                         </a>
-                        <div class="navbar-dropdown">
-                          <a class="navbar-item">
-                            <%= link_to "Edit", edit_post_path(post.id)%>
-                          </a>
-                          <a class="navbar-item">
-                            <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%>
-                          </a>
+                        <div class="navbar-dropdown" style="max-width: 1%;">
+                          <div class="navbar-item" style="margin-left: 0%;">
+                            <%= link_to "📝", edit_post_path(post.id)%>
+                          </div>
+                          <div class="navbar-item" style="margin-left: 0%;">
+                            <%= link_to "❌", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%>
+                          </div>
                         </div>
                       </div>
                       <% end %>

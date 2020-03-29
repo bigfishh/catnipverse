@@ -1,135 +1,202 @@
 <div class="columns">
     
     <div class="column">
-        <div class="box">
+        <div class="box" style="margin-top: 4%; max-height: 95vh;">
             <!-- START -->
-                <span style='margin-left: 10%'>
+                <d style='margin-left: 10%'>
                     <a class="is-size-7" href="/posts"> 🏠Home </a> | 
                     <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
                     <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
                     <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
                 </span>
                 <hr>
-                <h1>@<%= @user.username %></h1>
-                
-                <figure class="image is-128x128">
+                <h5 class="title is-5 has-text-link has-text-centered">
+                    ✨<%= @user.username %>✨
+                </h5>                
+                <figure class="image is-5by4">
                     <img src=<%= @user.img_url %> alt=<%= @user.username %>>
                 </figure>
-                <p>
-                    Name: <%= @user.name %><br/>
-                    Bio: <%= @user.bio %>
-                </p>
+                <h6 class="is-medium has-text-centered has-text-weight-bold"><%= @user.name %></h6> 
+                <h6 class="is-small has-text-centered is-italic has-text-weight-semibold"><%= @user.bio %></h6>
+
                 <% if @current_user != @user %>
-                        <% if @user.followings.include?(@current_user) %>
-                            <%=button_to "Unfollow", follow_path(@user.id), method: :post  %>
-                        <% else %>
-                            <%= button_to "Follow", user_follows_path(@user.id)%> <br/>
-                        <% end %>
+                    <% if @user.followings.include?(@current_user) %> 
+                        <small>                     
+                            😿<%=link_to "unfollow", follow_path(@user.id), method: :post  %> @<%= @user.username %> 
+                        </small>
                     <% else %>
-                        <%= link_to "Edit my profile", edit_user_path(@current_user.id)%>    
+                        <small>
+                            😺<%= link_to "follow", user_follows_path(@user.id)%> @<%= @user.username %> 
+                        </small>
                     <% end %>
-
-
-            <div class="columns">
-                <div class="column">
+                <% else %>
+                    <p class="is-size-7 has-text-right"><%= link_to "✐ edit my profile ✐", edit_user_path(@current_user.id)%></p>
+                <% end %>
+                <hr>
+                <div class="columns">
                     <div class="column">
                         <% if @user.followers.count > 0 %>
-                        <p class="bd-notification is-info">Following:</p>
+                            <small><p class="has-text-link bd-notification is-info has-text-weight-bold has-text-centered">following <%= @user.followers.count%> </p></small>
                             <% @user.followers.each do |follower| %>
-                                <li class="has-text-left is-3 ">
-                                <%= link_to follower.username, user_path(follower.id) %></li>
+                                <div class="level-item is-size-7">
+                                    <figure class="image is-32x32">
+                                        <img class="is-rounded" src=<%= follower.img_url %> alt=<%= follower.username %>>
+                                    </figure>
+                                    <%= link_to follower.username, user_path(follower.id) %>
+                                </div>
                             <% end %>
                         <% end %>
                     </div>
                     <div class="column">
                         <% if @user.followings.count > 0 %>
-                        <p class="bd-notification is-info">Followers:</p>
+                            <small><p class="has-text-link bd-notification is-info has-text-weight-bold has-text-centered"><%= @user.followings.count%> followers</p></small>
                             <% @user.followings.each do |following| %>
-                                <li class="has-text-left"><%= link_to following.username, user_path(following.id) %></li>
+                                <div class="level-item is-size-7">
+                                    <figure class="image is-16x16">
+                                        <img class="is-rounded" src=<%= following.img_url %> alt=<%= following.username %>>
+                                    </figure>
+                                    <%= link_to following.username, user_path(following.id) %>
+                                </div>
                             <% end %>
                         <% end %>
                     </div>
                 </div>
-            </div>
             <!-- END -->
+            
         </div>
     </div>
 
     <div class="column is-8">
-        <div class="box">
+        <div class="box" style="margin-top: 2%; max-height: 97vh; overflow: scroll;">
             <!-- START -->
             <% if @user.posts.count > 0 %>
                 <% @user.posts.each do |post| %>
-                <!-- START OF ARTICLE -->
-                <article class="media">
-
-                        <figure class="media-left image is-64x64">
-                            <img src=<%= post.user.img_url %> alt="<%= post.user.name %>">
+                    <!-- START OF ARTICLE -->
+                    <article class="media">
+                        <figure class="image media-left is-64x64">
+                            <img src= <%= post.user.img_url %> alt="<%= post.user.name %>">
                         </figure>
-
+                        
                         <div class="media-content">
                             <div class="content">
-                                <strong><%= post.user.name %></strong> <small><%= post.created_at.strftime("%m-%d-%Y")%></small><br/>
-                                <small><%= post.location.name %>, <%= post.location.city %></small><br/>
-                                <span style="margin-left: 2%">
-                                    <%= post.content %>
-                                </span>
-                                <br/>
-                                <!-- START LIKED USERS -->
-                                <small>
-                                <% if post.likes.count > 0 %> 
-                                    💕by <% post.liked_users.each do |user|%>
-                                        <%= user.username %>
-                                    <% end %>
-                                <% end %>
-                                </small>
-                                <!-- END LIKED USERS -->
-                                <br/>
-                                <!-- START LIKE/UNLIKE OPTION -->
-                                <small>
-                                    <a>
-                                        <% if post.liked_users.include?(@current_user)%>
-                                            <%= link_to "Unlike", like_path(post.id), method: :delete %> 
-                                        <% elsif post.user == @current_user %>
-                                        <% else %>
-                                            <%= link_to "Like", post_likes_path(post.id), method: :post%> 
-                                        <% end %> 
-                                    </a> 
-                                </small>
-                                <!-- END LIKE/UNLIKE OPTION -->
-                                <% if post.user == @current_user %>
+                                <div class="media-left">
+                                    <strong>
+                                        <%= post.user.name %>
+                                    </strong> 
                                     <small>
-                                        <a><%= link_to "Edit", edit_post_path(post.id)%></a> · <a><%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%></a> 
+                                        @<%= post.user.username %>
+                                        <br/>
+                                        <span class="is-italic is-size-7">
+                                            <%= post.created_at.strftime("%m-%d-%Y")%>
+                                        </span>
+                                    </small> 
+                                    <br/>
+                                    <span class="has-text-black-ter" style="margin-left: 2%; max-height: 10vh; overflow:scroll;">
+                                        <%= post.content %>
+                                    </span>
+                                    <br/>
+                                    <small class="is-small is-italic">
+                                        <% if post.likes.count > 0 %> 
+                                            💕by 
+                                            <%- liked_users= post.liked_users.map {|user| user.username}.join(', ') %>
+                                            <%= liked_users %>
+                                        <% end %>
                                     </small>
-                                <% end %>
+                                    <br/>
+                                    <small class="is-size-7">
+                                        <% if post.user.id != @current_user%>
+                                            <% if post.liked_users.include?(@current_user)%>
+                                                <%= link_to "Unlike", like_path(post.id), method: :delete %> ·
+                                            <% elsif post.user == @current_user %>
+                                            <% else %>
+                                                <%= link_to "Like", post_likes_path(post.id), method: :post%> ·
+                                            <% end %>
+                                        <% end %>
+                                    </small>  
+                                    <small class="is-size-7">
+                                        <% if  post.comments.count == 1 %>
+                                            <%= post.comments.size %> comment
+                                        <% elsif post.comments.count > 1 %>
+                                            <%= post.comments.size %> comments
+                                        <% else %>
+                                            0 comments
+                                        <% end %>  ·
+                                        <%= link_to "View", post_path(post.id)%> 
+                                        <% if post.user == @current_user%>
+                                            · <%= link_to "Edit", edit_post_path(post.id)%> 
+                                            · <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" }%>
+                                        <% end %>
+                                    </small>
                             </div>
-                            <% post.comments.each do |comment| %>
-                            <article class="media">
-                                    <figure class="media-left">
-                                        <p class="image is-64x64">
-                                            <img src=<%= comment.user.img_url %> alt="<%= comment.user.name %>">
-                                        </p>
-                                    </figure>
-                                <div class="media-content">
-                                    <div class="content">
-                                        <p>
-                                            <strong>@<%= comment.user.username %></strong>
-                                            <br>
-                                                <span style="margin-left: 2%">
-                                                    <%= comment.content %>
-                                                </span>
-                                            <br>
-                                            <small><a>Like</a> · <a>Reply</a> · 2 hrs</small>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
+                        
+                            <% if post.comments.count > 0 %>
+                                    <!-- FIRST COMMENT -->
+                                    <article class="media">
+                                        <figure class="media-left">
+                                            <p class="image is-64x64">
+                                                <img src=<%= post.comments.first.user.img_url %> alt="<%= post.comments.first.user.name %>">
+                                            </p>
+                                        </figure>
+                                        <div class="media-content">
+                                            <div class="content">
+                                                <strong>
+                                                    <%= post.comments.first.user.name %>
+                                                </strong> 
+                                                <small>
+                                                    @<%= post.comments.first.user.username %>
+                                                    <br/>
+                                                    <span class="is-italic is-size-7">
+                                                        <%= post.comments.first.created_at.strftime("%m-%d-%Y")%>
+                                                    </span>
+                                                </small> 
+                                                <br>
+                                                    <span class="has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
+                                                        <%= post.comments.first.content %>
+                                                    </span>
+                                                <br>
+                                                <span class="is-size-7"><a>Like</a> · <a>Reply</a> · 2 hrs</span>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <!-- END FIRST COMMENT -->
+                                    <!-- START SECOND COMMENT -->
+                                    <% if post.comments.count > 1 %>
+                                        <article class="media">
+                                            <figure class="media-left">
+                                                <p class="image is-64x64">
+                                                    <img src=<%= post.comments.second.user.img_url %> alt="<%= post.comments.second.user.name %>">
+                                                </p>
+                                            </figure>
+                                            <div class="media-content">
+                                                <div class="content">
+                                                    <strong>
+                                                        <%= post.comments.second.user.name %>
+                                                    </strong> 
+                                                    <small>
+                                                        @<%= post.comments.second.user.username %>
+                                                        <br/>
+                                                        <span class="is-italic is-size-7">
+                                                            <%= post.comments.second.created_at.strftime("%m-%d-%Y")%>
+                                                        </span>
+                                                    </small> 
+                                                    <br>
+                                                        <span class="has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
+                                                            <%= post.comments.second.content %>
+                                                        </span>
+                                                    <br>
+                                                    <span class="is-size-7"><a>Like</a> · <a>Reply</a> · 2 hrs</span>
+                                                </div>
+                                            </div>
+                                        </article>
+                                    <% end %>
+                                    <!-- END SECOND COMMENT -->
                             <% end %>
+
                         </div>
-                </article>
-                <!-- END OF ARTICLE -->
+                    </article>
+                    <!-- END OF ARTICLE -->
                 <% end %>
-            <% end %>
+            <%end%>
             <!-- END -->
         </div>
     </div>

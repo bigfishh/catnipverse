@@ -52,15 +52,15 @@ seoul = Location.create(name: "Garosu-gil", city: "Seoul", country: "South Korea
 puts "created locations..."
 puts "creating posts..."
 
-mp = Post.create(user_id: pumpkin.id, location_id: manhat.id, content: "First time visiting NYC")
-bt = Post.create(user_id: bongo.id, location_id: tokyo.id, content: "First time visiting Tokyo")
-pp = Post.create(user_id: pusheen.id, location_id: paris.id, content: "First time visiting Paris")
-nb = Post.create(user_id: nyan.id, location_id: brooklyn.id, content: "First time visiting Brooklyn")
-ss = Post.create(user_id: snowy.id, location_id: seoul.id, content: "First time visiting Seoul")
-bb = Post.create(user_id: bongo.id, location_id: brooklyn.id, content: "First time visiting Brooklyn")
-st = Post.create(user_id: snowy.id, location_id: tokyo.id, content: "First time visiting Tokyo")
-ps = Post.create(user_id: pumpkin.id, location_id: seoul.id, content: "First time visiting Seoul")
-hk = Post.create(user_id: honey.id, location_id: seoul.id, content: "Ringing in the new year! 🥳")
+mp = Post.create(user_id: pumpkin.id, location_id: manhat.id, content: "The sky was cloudless and of a deep dark blue.")
+bt = Post.create(user_id: bongo.id, location_id: tokyo.id, content: "I watched the storm, so beautiful yet terrific.")
+pp = Post.create(user_id: pusheen.id, location_id: paris.id, content: "Almost before we knew it, we had left the ground.")
+nb = Post.create(user_id: nyan.id, location_id: brooklyn.id, content: "A shining crescent far beneath the flying vessel.")
+ss = Post.create(user_id: snowy.id, location_id: seoul.id, content: "The face of the moon was in shadow.")
+bb = Post.create(user_id: bongo.id, location_id: brooklyn.id, content: "Then came the night of the first falling star.")
+hk = Post.create(user_id: honey.id, location_id: manhat.id, content: "Ringing in the new year! 🥳")
+st = Post.create(user_id: snowy.id, location_id: tokyo.id, content: "The spectacle before us was indeed sublime")
+ps = Post.create(user_id: pumpkin.id, location_id: seoul.id, content: "if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else")
 
 puts "creating posts..."
 puts "creating likes..."
@@ -79,17 +79,17 @@ l10 = Like.create(user_id: pumpkin.id, post_id: pp.id)
 puts "created likes..."
 puts "creating comments..."
 
-c1 = Comment.create(user_id: pumpkin.id, post_id: bt.id, content: "Wow! Would love to visit!")
-c2 = Comment.create(user_id: nyan.id, post_id: ss.id, content: "Wow! Would love to visit!")
-c3 = Comment.create(user_id: pumpkin.id, post_id: pp.id, content: "Wow! Would love to visit!")
-c4 = Comment.create(user_id: snowy.id, post_id: bb.id, content: "Wow! Would love to visit!")
-c5 = Comment.create(user_id: nyan.id, post_id: mp.id, content: "Wow! Would love to visit!")
-c6 = Comment.create(user_id: bongo.id, post_id: ps.id, content: "Wow! Would love to visit!")
-c7 = Comment.create(user_id: nyan.id, post_id: st.id, content: "Wow! Would love to visit!")
-c8 = Comment.create(user_id: pusheen.id, post_id: nb.id, content: "Wow! Would love to visit!")
-c9 = Comment.create(user_id: pumpkin.id, post_id: ss.id, content: "Wow! Would love to visit!")
-c10 = Comment.create(user_id: bongo.id, post_id: nb.id, content: "Wow! Would love to visit!")
-c11 = Comment.create(user_id: pusheen.id, post_id: st.id, content: "Wow! Would love to visit!")
+c1 = Comment.create(user_id: pumpkin.id, post_id: bt.id, content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
+c2 = Comment.create(user_id: nyan.id, post_id: ss.id, content: "Pellentesque euismod justo sed lectus laoreet, quis mattis odio ullamcorper.")
+c3 = Comment.create(user_id: pumpkin.id, post_id: pp.id, content: "Ut in est ut lacus lobortis rutrum in et erat.")
+c4 = Comment.create(user_id: snowy.id, post_id: bb.id, content: "Nulla venenatis ipsum vitae felis elementum luctus.")
+c5 = Comment.create(user_id: nyan.id, post_id: mp.id, content: "Pellentesque euismod justo sed lectus laoreet, quis mattis odio ullamcorper.")
+c6 = Comment.create(user_id: bongo.id, post_id: ps.id, content: "Etiam varius dolor in metus lobortis blandit.")
+c7 = Comment.create(user_id: nyan.id, post_id: st.id, content: "Donec mattis nisi non tellus aliquam, a laoreet urna lobortis.")
+c8 = Comment.create(user_id: pusheen.id, post_id: nb.id, content: "Ut in est ut lacus lobortis rutrum in et erat.")
+c9 = Comment.create(user_id: pumpkin.id, post_id: ss.id, content: "Maecenas varius erat in purus egestas sollicitudin.")
+c10 = Comment.create(user_id: bongo.id, post_id: nb.id, content: "Etiam varius dolor in metus lobortis blandit.")
+c11 = Comment.create(user_id: pusheen.id, post_id: st.id, content: "Aliquam cursus nisi eu tempus scelerisque.")
 
 puts "created comments..."
 
