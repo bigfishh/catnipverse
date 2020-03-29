@@ -81,7 +81,7 @@
                             <div class="content">
                                 <div class="media-left">
                                     <strong>
-                                        <%= post.user.name %>
+                                        <%= link_to post.user.name, user_path(post.user.id) %>
                                     </strong> 
                                     <small>
                                         @<%= post.user.username %>
@@ -140,7 +140,7 @@
                                         <div class="media-content">
                                             <div class="content">
                                                 <strong>
-                                                    <%= post.comments.first.user.name %>
+                                                    <%= link_to post.comments.first.user.name, user_path(post.comments.first.user.id) %>
                                                 </strong> 
                                                 <small>
                                                     @<%= post.comments.first.user.username %>
@@ -170,7 +170,7 @@
                                             <div class="media-content">
                                                 <div class="content">
                                                     <strong>
-                                                        <%= post.comments.second.user.name %>
+                                                        <%= link_to post.comments.second.user.name, user_path(post.comments.second.user.id) %>
                                                     </strong> 
                                                     <small>
                                                         @<%= post.comments.second.user.username %>
