@@ -39,6 +39,11 @@ seven = Follow.create(follower_id: snowy.id, following_id: nyan.id)
 eight = Follow.create(follower_id: pumpkin.id, following_id: snowy.id)
 nine = Follow.create(follower_id: snowy.id, following_id: bongo.id)
 ten = Follow.create(follower_id: bongo.id, following_id: honey.id)
+eleven= Follow.create(follower_id: honey.id, following_id: bongo.id)
+twelve = Follow.create(follower_id: honey.id, following_id: pusheen.id)
+thirteen = Follow.create(follower_id: pumpkin.id, following_id: pusheen.id)
+
+
 
 puts "created follows..."
 puts "creating locations..."

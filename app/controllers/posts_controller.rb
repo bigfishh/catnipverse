@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
   def update
     @post.update(user: current_user, location_id: params[:post][:location_id], content: params[:post][:content])
-    byebug
+    # byebug
     redirect_to post_path(@post.id)
   end
 

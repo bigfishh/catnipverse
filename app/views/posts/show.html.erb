@@ -24,7 +24,7 @@
           </p>
         </figure>
         <div class="media-content has-background-white-bis">
-          <strong><%= @post.user.name %></strong> <small>@<%= @post.user.username %></small> <br/>
+          <strong><%= link_to @post.user.name, user_path(@post.user.id) %></strong> <small>@<%= @post.user.username %></small> <br/>
           <div class="content has-text-grey-darker">
               <small class="is-italic is-size-7"><%= @post.location.name %>, <%= @post.location.city %><br/></small>
                 <div class="content" style="max-width: 45vw; overflow-x; hidden; max-height:20vh; overflow-y:scroll">
@@ -36,9 +36,8 @@
           <span class="is-size-7 is-italic">
                 <% if @post.likes.count > 0 %> 
                   💕by 
-                  <% @post.liked_users.each do |user|%>
-                      <%= user.username %>
-                  <% end %>
+                  <%- liked_users= @post.liked_users.map {|user| user.username}.join(', ') %>
+                  <%= liked_users %>
                 <% end %>
           </span><br/>
               <small class="is-size-7">
@@ -86,7 +85,7 @@
                 <div class="media-content">
                   <div class="content" style="width: 45vw; overflow-x; hidden">
                     <p>
-                      <strong><%= comment.user.name %></strong> <small>@<%= comment.user.username %></small>
+                      <strong><%= link_to comment.user.name, user_path(comment.user.id) %></strong> <small>@<%= comment.user.username %></small>
                       <br>
                         <%= comment.content %>
                       <br>
