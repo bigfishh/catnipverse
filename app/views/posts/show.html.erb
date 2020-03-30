@@ -2,6 +2,9 @@
   <div style="margin-top: 1%" class="column is-two-thirds">
     <div class="box">
       <% if @current_user %>
+            <h5 class="title is-5 has-text-link has-text-centered is-italic has-text-weight-bold is-family-code">
+              ✨CatThoughts✨
+            </h5> 
             <span>
                 <a class="is-size-7" href="/posts"> 🏠Home </a> | 
                 <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
@@ -25,12 +28,12 @@
           <div class="content has-text-grey-darker">
               <small class="is-italic is-size-7"><%= @post.location.name %>, <%= @post.location.city %><br/></small>
                 <div class="content" style="max-width: 45vw; overflow-x; hidden; max-height:20vh; overflow-y:scroll">
-                  <span class="has-text-black is-size-6" style="margin-left: 2%">
+                  <span class="has-text-weight-semi-bold has-text-black-ter" style="margin-left: 2%">
                     <%= @post.content %>
                   </span>
                 </div>
           </div>
-          <span class="is-size-7">
+          <span class="is-size-7 is-italic">
                 <% if @post.likes.count > 0 %> 
                   💕by 
                   <% @post.liked_users.each do |user|%>
@@ -107,7 +110,7 @@
   </div>
   <div class="column" style="margin-top: 20%">
     <div class="box">
-    <h6 class="title is-6 is-spaced has-text-grey-dark">post a comment...</h6>
+    <h6 class="title is-6 is-spaced has-text-link is-family-code">post a comment...</h6>
       <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -120,7 +123,9 @@
                   <%= f.hidden_field :post_id, value: @post.id %>
                   <textarea class="control textarea" <%= f.text_area :content %>
               </div>
-              <a class="button"><%= f.submit "Submit" %></a>
+              <button class="button is-link is-small">
+                <span type="submit" name="commit" value="Create" data-disable-with="Create Post">submit</span>
+              </button>
             <% end %>
           </div>
         </article>

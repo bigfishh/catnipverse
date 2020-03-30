@@ -3,6 +3,9 @@
     <!-- Start -->
     <div class="box" style="margin-top: 10%;">
         <% if @current_user %>
+            <h5 class="title is-5 has-text-link has-text-centered is-italic has-text-weight-bold is-family-code">
+              ✨CatThoughts✨
+            </h5> 
             <span style='margin-left: 10%'>
                     <a class="is-size-7" href="/posts"> 🏠Home </a> | 
                     <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
@@ -10,7 +13,10 @@
                     <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
             </span>
         <% else %>
-          <span style="margin-left: 20%">
+          <h5 class="title is-5 has-text-link has-text-centered is-italic has-text-weight-bold is-family-code">
+            ✨Welcome to CatThoughts✨
+          </h5>
+          <span style="margin-left: 22%">
             🐱
             <a class="is-normal" href=/login > Log in </a> or
             <a class="is-normal" href=/signup > Sign up </a>
@@ -27,7 +33,7 @@
   <div class="column is-8">
     <!-- Start -->
     <div class="box" style="margin-top: 2%; max-height: 96vh; overflow: scroll;">
-    <h4 class="title is-4 is-spaced has-text-info		" style="margin-left:35%;">thoughts shared 💭</h4>
+    <h4 class="title is-4 is-spaced has-text-link is-family-code" style="margin-left:35%;">thoughts shared 💭</h4>
     <% @posts.each do |post|%>
       <article class="media">
         <figure class="image media-left is-64x64">
@@ -44,11 +50,11 @@
                 <span class="is-italic is-size-7"><%= post.created_at.strftime("%m-%d-%Y")%></span>
               </small> 
               <br>
-              <div class="has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
+              <div class="has-text-weight-semi-bold has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
                 <%= post.content %>
               </div>
           </div>
-          <small class="is-small">
+          <small class="is-small is-italic">
                 <% if post.likes.count > 0 %> 
                   💕by 
                   <%- liked_users= post.liked_users.map {|user| user.username}.join(', ') %>

@@ -60,7 +60,7 @@ ss = Post.create(user_id: snowy.id, location_id: seoul.id, content: "The face of
 bb = Post.create(user_id: bongo.id, location_id: brooklyn.id, content: "Then came the night of the first falling star.")
 hk = Post.create(user_id: honey.id, location_id: manhat.id, content: "Ringing in the new year! 🥳")
 st = Post.create(user_id: snowy.id, location_id: tokyo.id, content: "The spectacle before us was indeed sublime")
-ps = Post.create(user_id: pumpkin.id, location_id: seoul.id, content: "if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else")
+ps = Post.create(user_id: pumpkin.id, location_id: seoul.id, content: "if you're not happy single, you won't be happy in a relationship. true happiness comes from closing 100 chrome tabs after solving an obscure programming bug, not from someone else -twitter")
 
 puts "creating posts..."
 puts "creating likes..."

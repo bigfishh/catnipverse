@@ -3,40 +3,43 @@
     <div class="column">
         <div class="box" style="margin-top: 4%; max-height: 95vh;">
             <!-- START -->
-                <d style='margin-left: 10%'>
+                <h5 class="title is-5 has-text-link has-text-centered is-italic has-text-weight-bold is-family-code">
+                    ✨CatThoughts✨
+                </h5> 
+                <span style='margin-left: 10%'>
                     <a class="is-size-7" href="/posts"> 🏠Home </a> | 
                     <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
                     <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
                     <a class="is-size-7" rel="nofollow" data-method="delete" href="/logout"> 🚪Logout </a>
                 </span>
                 <hr>
-                <% if @current_user != @user %>
-                    <% if @user.followings.include?(@current_user) %>                   
-                        <%=button_to "unfollow ", follow_path(@user.id), method: :post%>
-                    <% else %>
-                        <%= button_to "follow ", user_follows_path(@user.id)%>
-                    <% end %>
-                <% end %> 
-                <h5 class="title is-5 has-text-link has-text-centered">
+                <h5 class="title is-5 has-text-link has-text-centered is-family-code">
                     ✨<%= @user.username %>✨
                 </h5>               
-                <figure class="image is-5by4">
+                <figure class="image is-5by4 ">
                     <img src=<%= @user.img_url %> alt=<%= @user.username %>>
                 </figure>
-                <h6 class="is-medium has-text-centered has-text-weight-bold"><%= @user.name %></h6> 
-                <h6 class="is-small has-text-centered is-italic has-text-weight-semibold"><%= @user.bio %></h6>
-
+                <h6 class="is-medium has-text-centered has-text-weight-bold is-family-code"><%= @user.name %></h6> 
+                <h6 class="is-small has-text-centered is-italic has-text-weight-semibold "><%= @user.bio %></h6>
+                <% if @current_user != @user %>
+                    <% if @user.followings.include?(@current_user) %>  
+                            <div style="margin-left: 40%"><%=button_to "unfollow ", follow_path(@user.id), method: :post%></div>
+                    <% else %>
+                        <div style="margin-left: 40%"><%= button_to "follow ", user_follows_path(@user.id)%></div>
+                    <% end %>
+                <% end %> 
                 <% if @current_user == @user %>
                     <p class="is-size-7 has-text-right"><%= link_to "✐ edit my profile ✐", edit_user_path(@current_user.id)%></p>
                 <% end %>
                 <hr>
+                
                 <div class="columns">
                     <div class="column">
                         <% if @user.followers.count > 0 %>
-                            <small><p class="has-text-link bd-notification is-info has-text-weight-bold has-text-centered">following <%= @user.followers.count%> </p></small>
+                            <small><p class="has-text-link bd-notification has-text-weight-bold has-text-centered"><%= @user.followers.count%> following</p></small>
                             <% @user.followers.each do |follower| %>
                                 <div class="level-item is-size-7">
-                                    <figure class="image is-32x32">
+                                    <figure class="image is-16x16">
                                         <img class="is-rounded" src=<%= follower.img_url %> alt=<%= follower.username %>>
                                     </figure>
                                     <%= link_to follower.username, user_path(follower.id) %>
@@ -88,11 +91,11 @@
                                         </span>
                                     </small> 
                                     <br/>
-                                    <span class="has-text-black-ter" style="margin-left: 2%; max-height: 10vh; overflow:scroll;">
+                                    <span class="has-text-weight-semi-bold has-text-black-ter" style="margin-left: 2%; max-height: 10vh; overflow:scroll;">
                                         <%= post.content %>
                                     </span>
                                     <br/>
-                                    <small class="is-small is-italic">
+                                    <small class="is-size-7 is-italic">
                                         <% if post.likes.count > 0 %> 
                                             💕by 
                                             <%- liked_users= post.liked_users.map {|user| user.username}.join(', ') %>
