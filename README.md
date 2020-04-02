@@ -7,8 +7,16 @@
 <br />
 
 ## Features 
-
-
+- Sign in/Sign up option with authenticated password
+- View/Edit profile 
+- Follow/Unfollow other users
+- Full CRUD capabilities for post such as 
+  - Create a post
+  - View all posts written on this application
+  - Edit/Delete only the posts written by the logged in user 
+- Like/Unlike only the posts written by other users
+- Add comments to any post
+ 
 ## Tech Stack
 This web app makes use of the following:
 - Ruby [2.6.1]
