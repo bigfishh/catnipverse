@@ -24,8 +24,9 @@ class User < ApplicationRecord
 
     validates :name, presence: true, length: {maximum: 30}
     validates :username, presence: true, uniqueness: true
-    validates :password, presence: true, length: {minimum: 10, maximum: 20}
+    validates :password, presence: true
     validates :bio, length: { maximum: 160, too_long: "%{count} characters is the maximum allowed" }
 
 #method
 end
+# , length: {minimum: 10, maximum: 20}

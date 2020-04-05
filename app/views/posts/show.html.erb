@@ -5,7 +5,7 @@
             <h5 class="title is-5 has-text-link has-text-centered is-italic has-text-weight-bold is-family-code">
               ✨CatThoughts✨
             </h5> 
-            <span>
+            <span style='margin-left: 35%'>
                 <a class="is-size-7" href="/posts"> 🏠Home </a> | 
                 <a class="is-size-7" href="/posts/new"> 💻New Post </a> |
                 <span class="is-size-7"> <%= link_to "😸Profile", user_path(@current_user.id) %> |
@@ -89,14 +89,14 @@
                       <br>
                         <%= comment.content %>
                       <br>
-                      <small>
+                      <span class="is-size-7">
                           <a>
                               <% if @current_user == comment.user%>
-                                  <%= link_to "delete", comment_path(comment.id), method: :delete%>
+                                  <%= link_to "delete", comment_path(comment.id), method: :delete%> ·
                               <% end %>
                           </a> 
                           <%= comment.created_at.strftime("%m-%d-%Y")%>
-                      </small>
+                      </span>
                     </p>
                   </div>
                 </div>

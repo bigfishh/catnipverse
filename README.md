@@ -4,6 +4,7 @@
   A <code>Rails</code> microblogging web application designed as Twitter for cats
 </div>
 
+catthought
 <br />
 
 ## Tech Stack
