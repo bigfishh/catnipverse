@@ -3,6 +3,7 @@
 <div align="center">
   A <code>Rails</code> microblogging web application designed as Twitter for cats
 </div>
+<br/>
 <p align="center">
   <img width="100%" height="60%" src="catthought.gif" alt="gif of the app">
 </p>
