@@ -3,9 +3,16 @@
 <div align="center">
   A <code>Rails</code> microblogging web application designed as Twitter for cats
 </div>
+<p align="center">
+  <img width="100%" height="60%" src="catthought.gif" alt="gif of the app">
+</p>
 
-catthought
-<br />
+<div align="center">
+  <p>
+  🧭Explore: 
+  <a href="https://www.youtube.com/watch?v=nuExyylFh0I">Demo</a> || <a href="">Deployed App</a>
+  </p>
+</div>
 
 ## Features 
 - Sign in/Sign up option with authenticated password
