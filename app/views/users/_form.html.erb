@@ -17,6 +17,13 @@
             </span>
             <hr>
             <%= form_for @user do |f| %>
+                <% if @errors %>
+                    <%@errors.map do |error|%>
+                        <p class="has-text-centered	has-text-danger	">
+                            <%= error %>
+                        </p>
+                    <%end%>
+                <% end %>
             <div class="field">
                 <label class="label">Name</label>
                 <div class="control">
@@ -32,7 +39,7 @@
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input class="input" type="password" name="user[password]" id="user_password" />         
+                    <input class="input" type="password" name="user[password]" id="user_password" placeholder=<%=f.text_field :password%></input>         
                 </div>
             </div>
             <div class="field">

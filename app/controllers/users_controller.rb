@@ -23,13 +23,19 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @errors = flash[:errors]
   end
 
   def update
-    @user.update(name: params[:user][:name], username: params[:user][:username], password: params[:user][:password], bio: params[:user][:bio])
-    # @user.update(user_params)
-    # byebug
-    redirect_to user_path(@user.id)
+    byebug
+    # if @user.valid?
+      @user.update(user_params)
+      redirect_to user_path(@user.id)
+    # else
+    #   flash[:errors] = @user.errors.full_messages
+    #   byebug
+    #   redirect_to edit_user_path
+    # end
   end
 
   def show

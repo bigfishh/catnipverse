@@ -11,10 +11,12 @@ class SessionsController < ApplicationController
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
+      byebug
       redirect_to posts_path
     else
       flash[:errors] = "Invalid username or password"
-      redirect_to root_path
+      byebug
+      redirect_to login_path
     end
   end
 

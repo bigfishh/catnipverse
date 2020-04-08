@@ -28,9 +28,7 @@
                         <div style="margin-left: 40%"><%= button_to "follow ", user_follows_path(@user.id)%></div>
                     <% end %>
                 <% end %> 
-                <% if @current_user == @user %>
-                    <p class="is-size-7 has-text-right"><%= link_to "✐ edit my profile ✐", edit_user_path(@current_user.id)%></p>
-                <% end %>
+                <!-- removed edit profile option for now-->
                 <hr>
                 
                 <div class="columns">
@@ -175,16 +173,17 @@
                                                     <small>
                                                         @<%= post.comments.second.user.username %>
                                                         <br/>
+                                                    </small> 
+                                                    <span class="has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
+                                                        <%= post.comments.second.content %>
+                                                    </span>
+                                                    <br>
+                                                    <small> 
                                                         <span class="is-italic is-size-7">
                                                             <%= post.comments.second.created_at.strftime("%m-%d-%Y")%>
                                                         </span>
                                                     </small> 
-                                                    <br>
-                                                        <span class="has-text-black-ter" style="margin-left: 2%; max-height: 13vh; overflow:scroll;">
-                                                            <%= post.comments.second.content %>
-                                                        </span>
-                                                    <br>
-                                                    <span class="is-size-7"><a>Like</a> · <a>Reply</a> · 2 hrs</span>
+                                                    
                                                 </div>
                                             </div>
                                         </article>

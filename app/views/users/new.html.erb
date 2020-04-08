@@ -9,6 +9,13 @@
                 </h5> 
                         <!-- Content -->
                         <%= form_for @user do |f| %>
+                            <% if @errors %>
+                                <%@errors.map do |error|%>
+                                    <p class="has-text-centered	has-text-danger	">
+                                        <%= error %>
+                                    </p>
+                                <%end%>
+                            <% end %>
                             <div class="field">
                                 <p class="control has-icons-left">
                                 <label class="label">Name</label>

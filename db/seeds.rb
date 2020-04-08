@@ -19,7 +19,7 @@ User.destroy_all
 puts "creating users..."
 
 
-pumpkin = User.create(name: "Pumpkin", username: "pumpkinheree", password: "123", bio: "Fall is my favorite season", img_url:"https://cdn.shopify.com/s/files/1/0344/6469/files/cat-in-pumpkin-500x450_0aab1e8c-36cb-45dc-a4d4-76138fc56f76.jpg?v=1539889749")
+pumpkin = User.create(name: "Pumpkin", username: "pumpkinheree", password: "pumpkinpumpkin", bio: "Fall is my favorite season", img_url:"https://cdn.shopify.com/s/files/1/0344/6469/files/cat-in-pumpkin-500x450_0aab1e8c-36cb-45dc-a4d4-76138fc56f76.jpg?v=1539889749")
 bongo = User.create(name: "Bongo Cat", username: "bongoismynameo", password: "bongobongo", bio: "That's my jam~", img_url:"https://cdn.glitch.com/c4e65900-d574-4a30-ab84-cd913b7fa895%2Fbongo-cat.gif?1537302652732")
 pusheen = User.create(name: "Pusheen", username: "thepusheencat", password: "pusheenpusheen", bio: "I'm the chubby grey tabby cat you see on the internet", img_url:"https://cdn.thinglink.me/api/image/876172557722583041/1240/10/scaletowidth")
 nyan = User.create(name: "Nyan Cat", username: "poptartnrainbows", password: "nyan3nyan3", bio: "I love me some good poptart and rainbows!", img_url:"https://i.ytimg.com/vi/2yJgwwDcgV8/hqdefault.jpg")
