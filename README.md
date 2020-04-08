@@ -5,7 +5,7 @@
 </div>
 <br/>
 <p align="center">
-  <img max-height: 90% width="100%" src="catthought.gif" alt="gif of the app">
+  <img max-height: 90% width="100%" src="CatThoughts.gif" alt="gif of the app">
 </p>
 <div align="center">
   <p>
