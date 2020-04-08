@@ -3,14 +3,14 @@
 <div align="center">
   A <code>Rails</code> microblogging web application designed as Twitter for cats
 </div>
+<br/>
 <p align="center">
-  <img width="100%" height="60%" src="catthought.gif" alt="gif of the app">
+  <img max-height: 90% width="100%" src="catthought.gif" alt="gif of the app">
 </p>
-
 <div align="center">
   <p>
   🧭Explore: 
-  <a href="https://www.youtube.com/watch?v=nuExyylFh0I">Demo</a> || <a href="">Deployed App</a>
+  <a href="https://www.youtube.com/watch?v=hgKym0rRhD8">Demo</a>
   </p>
 </div>
 
