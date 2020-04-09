@@ -10,7 +10,7 @@
 <div align="center">
   <p>
   🧭Explore: 
-  <a href="https://youtu.be/42EhuZF6h2I">Demo</a>
+  <a href="https://youtu.be/42EhuZF6h2I">Demo</a> || <a href="https://catthoughts.herokuapp.com/">Deployed App</a>
   </p>
 </div>
 
