@@ -7,6 +7,12 @@
 <p align="center">
   <img max-height: 90% width="100%" src="CatThoughts.gif" alt="gif of the app">
 </p>
+<div align="center">
+  <p>
+  🧭Explore: 
+  <a href="https://youtu.be/42EhuZF6h2I">Demo</a>
+  </p>
+</div>
 
 ## Features 
 - Sign in/Sign up option with authenticated password
